@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Search, User, Heart, ShoppingBag, Menu, X } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/lib/store-context";
 // import { ThemeToggle } from "@/components/theme-toggle"
@@ -63,7 +62,7 @@ export function Header() {
             {/* Actions */}
             <div className="flex items-center gap-0.5 sm:gap-1 lg:gap-2 ml-auto">
               <Button
-                variant="ghost"
+                variant="transpart"
                 size="icon"
                 className="h-9 w-9 sm:h-10 sm:w-10 hover:cursor-pointer"
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -80,7 +79,7 @@ export function Header() {
 
               <Link href="/account" className="sm:block">
                 <Button
-                  variant="ghost"
+                  variant="transpart"
                   size="icon"
                   className="h-9 w-9 sm:h-10 sm:w-10 hover:cursor-pointer"
                 >
@@ -91,7 +90,7 @@ export function Header() {
 
               <Link href="/wishlist" className="relative sm:block">
                 <Button
-                  variant="ghost"
+                  variant="transpart"
                   size="icon"
                   className="h-9 w-9 sm:h-10 sm:w-10 hover:cursor-pointer"
                 >
@@ -99,7 +98,7 @@ export function Header() {
                   <span className="sr-only">Wishlist</span>
                 </Button>
                 {wishlist.length > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 h-4 w-4 sm:h-5 sm:w-5 bg-accent text-destructive text-[9px] sm:text-[10px] font-semibold flex items-center justify-center rounded-full">
+                  <span className="absolute -top-0.5 -right-0.5 h-4 w-4 sm:h-5 sm:w-5 bg-transparent text-destructive text-[9px] sm:text-[10px] font-semibold flex items-center justify-center rounded-full">
                     {wishlist.length}
                   </span>
                 )}
@@ -107,7 +106,7 @@ export function Header() {
 
               <Link href="/cart" className="relative">
                 <Button
-                  variant="ghost"
+                  variant="transpart"
                   size="icon"
                   className="h-9 w-9 sm:h-10 sm:w-10 hover:cursor-pointer"
                 >
@@ -115,7 +114,7 @@ export function Header() {
                   <span className="sr-only">Cart</span>
                 </Button>
                 {cartCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 h-4 w-4 sm:h-5 sm:w-5 bg-accent text-destructive text-[9px] sm:text-[10px] font-semibold flex items-center justify-center rounded-full">
+                  <span className="absolute -top-0.5 -right-0.5 h-4 w-4 sm:h-5 sm:w-5 bg-transparent text-destructive text-[9px] sm:text-[10px] font-semibold flex items-center justify-center rounded-full">
                     {cartCount}
                   </span>
                 )}
@@ -138,7 +137,7 @@ export function Header() {
                 autoFocus
               />
               <Button
-                variant="ghost"
+                variant="transpart"
                 size="sm"
                 onClick={() => setIsSearchOpen(false)}
                 className="flex-shrink-0 hover:cursor-pointer"

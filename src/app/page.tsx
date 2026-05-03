@@ -1,4 +1,10 @@
-import Image from "next/image";
+import { CategoryGrid } from "@/components/category-grid";
+import { EditorialSection } from "@/components/editorial-section";
+import { FeaturedProducts } from "@/components/featured-products";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { HeroSection } from "@/components/hero-section";
+import { StoreProvider } from "@/lib/store-context";
 
 export default function Home() {
   return (
@@ -10,7 +16,9 @@ export default function Home() {
           <CategoryGrid />
           <FeaturedProducts />
           <EditorialSection />
-      </main>
-    </div>
+        </main>
+        <Footer/>
+      </div>
+    </StoreProvider>
   );
 }

@@ -1,34 +1,34 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { Heart } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useStore, type Product } from "@/lib/store-context"
-import { cn } from "@/lib/utils"
+import Image from "next/image";
+import Link from "next/link";
+import { Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useStore, type Product } from "@/lib/store-context";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
-  product: Product
-  className?: string
+  product: Product;
+  className?: string;
 }
 
 export function ProductCard({ product, className }: ProductCardProps) {
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useStore()
-  const inWishlist = isInWishlist(product.id)
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useStore();
+  const inWishlist = isInWishlist(product.id);
 
   const handleWishlistClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
+    e.preventDefault();
+    e.stopPropagation();
     if (inWishlist) {
-      removeFromWishlist(product.id)
+      removeFromWishlist(product.id);
     } else {
-      addToWishlist(product)
+      addToWishlist(product);
     }
-  }
+  };
 
   return (
-    <Link 
-      href={`/product/${product.id}`} 
+    <Link
+      href={`/product/${product.id}`}
       className={cn("group block", className)}
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-muted dark:bg-secondary">
@@ -40,34 +40,37 @@ export function ProductCard({ product, className }: ProductCardProps) {
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         />
         <Button
-          variant="ghost"
+          // variant="inverse"
           size="icon-sm"
           className={cn(
-            "absolute top-2 right-2 sm:top-3 sm:right-3 h-8 w-8 sm:h-9 sm:w-9 bg-background dark:bg-background/95 backdrop-blur-sm hover:bg-background border border-border/50 dark:border-border/30",
-            "opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300",
-            inWishlist && "opacity-100 bg-background"
+            "absolute top-2 right-2 sm:top-3 sm:right-3 h-8 w-8 sm:h-9 sm:w-9",
+            "bg-transparent sm:bg-transparent sm:hover:bg-background/0",
+            "opacity-100 transition-all duration-300",
+            inWishlist && "bg-background/50",
           )}
           onClick={handleWishlistClick}
         >
-          <Heart 
+          <Heart
             className={cn(
               "h-3.5 w-3.5 sm:h-4 sm:w-4 transition-colors",
-              inWishlist && "fill-destructive text-destructive-foregroundt"
-            )} 
+              inWishlist
+                ? "fill-destructive text-destructive"
+                : "text-foreground/60 sm:text-foreground/0 sm:group-hover:text-foreground",
+            )}
           />
           <span className="sr-only">
             {inWishlist ? "Remove from wishlist" : "Add to wishlist"}
           </span>
         </Button>
         <div className="absolute inset-x-0 bottom-0 p-2 sm:p-4 bg-gradient-to-t from-foreground/40 dark:from-foreground/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 hidden sm:block">
-          <Button 
-            variant="accent"
+          <Button
+            variant="secondary"
             size="sm"
             className="w-full text-xs sm:text-sm"
             onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              window.location.href = `/product/${product.id}`
+              e.preventDefault();
+              e.stopPropagation();
+              window.location.href = `/product/${product.id}`;
             }}
           >
             Quick View
@@ -93,11 +96,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
               </span>
             ))}
             {product.colors.length > 3 && (
-              <span className="text-[10px] sm:text-xs text-muted-foreground">+{product.colors.length - 3}</span>
+              <span className="text-[10px] sm:text-xs text-muted-foreground">
+                +{product.colors.length - 3}
+              </span>
             )}
           </div>
         )}
       </div>
     </Link>
-  )
+  );
 }

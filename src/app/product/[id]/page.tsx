@@ -221,12 +221,12 @@ function ProductContent({ id }: { id: string }) {
                   Add to Bag
                 </Button>
                 <Button
-                  variant="inverse"
+                  variant="secondary"
                   size="icon-lg"
                   className="h-14 w-14"
                   onClick={handleWishlistToggle}
                 >
-                  <Heart className={cn("h-5 w-5", inWishlist && "fill-destructive text-destructive")} />
+                  <Heart className={cn("h-8 w-8", inWishlist && "fill-destructive text-destructive")} />
                   <span className="sr-only">
                     {inWishlist ? "Remove from wishlist" : "Add to wishlist"}
                   </span>
